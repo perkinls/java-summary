@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="02-data-structure" />
+        <module name="05-multi-thread" />
+        <module name="03-basic-concept" />
+        <module name="99-common-tools" />
+        <module name="01-design-patterns" />
+        <module name="06-lock-sync" />
+        <module name="04-network-program" />
+        <module name="98-function-test" />
+        <module name="07-high-concurrency" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="01-data-structure" target="1.5" />
+      <module name="01-design-patterns" target="1.8" />
+      <module name="02-data-structure" target="1.8" />
+      <module name="03-basic-concept" target="1.8" />
+      <module name="04-network-program" target="1.8" />
+      <module name="05-high-concurrency" target="1.8" />
+      <module name="05-multi-thread" target="1.8" />
+      <module name="06-lock-sync" target="1.8" />
+      <module name="07-high-concurrency" target="1.8" />
+      <module name="98-function-test" target="1.8" />
+      <module name="99-common-tools" target="1.8" />
+      <module name="factory" target="1.8" />
+      <module name="java-data-structure" target="8" />
+      <module name="java-design-patterns" target="1.5" />
+      <module name="java-summary" target="1.8" />
+      <module name="singleton" target="1.8" />
+      <module name="strategy" target="1.8" />
+      <module name="template-method" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

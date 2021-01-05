@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01-design-patterns/01-design-patterns.iml" filepath="$PROJECT_DIR$/01-design-patterns/01-design-patterns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-data-structure/02-data-structure.iml" filepath="$PROJECT_DIR$/02-data-structure/02-data-structure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03-basic-concept/03-basic-concept.iml" filepath="$PROJECT_DIR$/03-basic-concept/03-basic-concept.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04-network-program/04-network-program.iml" filepath="$PROJECT_DIR$/04-network-program/04-network-program.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05-multi-thread/05-multi-thread.iml" filepath="$PROJECT_DIR$/05-multi-thread/05-multi-thread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06-lock-sync/06-lock-sync.iml" filepath="$PROJECT_DIR$/06-lock-sync/06-lock-sync.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07-high-concurrency/07-high-concurrency.iml" filepath="$PROJECT_DIR$/07-high-concurrency/07-high-concurrency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/98-function-test/98-function-test.iml" filepath="$PROJECT_DIR$/98-function-test/98-function-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/99-common-tools/99-common-tools.iml" filepath="$PROJECT_DIR$/99-common-tools/99-common-tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-summary.iml" filepath="$PROJECT_DIR$/.idea/java-summary.iml" />
+    </modules>
+  </component>
+</project>
