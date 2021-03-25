@@ -1,5 +1,8 @@
 package lipan.top.notes.basicsort;
 
+import lipan.top.notes.basicsort.impl.InsertionSort;
+import lipan.top.notes.basicsort.impl.MergeSort;
+import lipan.top.notes.basicsort.impl.SelectionSort;
 import org.junit.Test;
 
 /**
@@ -41,5 +44,15 @@ public class SortTest {
         System.out.println("插入排序测试1数据量为100" + SortTestHelper.testSort(integers0, new InsertionSort()));
         System.out.println("插入排序测试2数据量为10000" + SortTestHelper.testSort(integers1, new InsertionSort()));
         System.out.println("插入排序测试3数据量为100000" + SortTestHelper.testSort(integers2, new InsertionSort()));
+    }
+
+    /**
+     * 插入排序测试
+     */
+    @Test
+    public void mergeSortSortTest() {
+        Integer[] integers0 = SortTestHelper.generateRandomArray(10, 0, 1000000);
+        System.out.println("归并排序测试1数据量为10耗" + SortTestHelper.testSort(integers0, new MergeSort()));
+
     }
 }

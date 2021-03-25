@@ -1,9 +1,12 @@
-package lipan.top.notes.basicsort;
+package lipan.top.notes.basicsort.impl;
+
+import lipan.top.notes.basicsort.ISort;
+import lipan.top.notes.basicsort.SortTestHelper;
 
 /**
  * @author li.pan
  * @version 1.0.0
- * @Description TODO
+ * @Description 插入排序 (只需要维护子列表)
  * @createTime 2020年12月08日 20:13:00
  */
 public class InsertionSort implements ISort<Integer> {

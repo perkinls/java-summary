@@ -11,13 +11,13 @@ import java.util.concurrent.CountDownLatch;
  */
 public class CountDownLatchDemo {
     public static void main(String[] args) {
-        final CountDownLatch latch = new CountDownLatch(2);
+        final CountDownLatch latch = new CountDownLatch(3);
 
         // 线程1
         new Thread(() -> {
             try {
                 System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
-                Thread.sleep(3000);
+                Thread.sleep(1000);
                 System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
                 latch.countDown();
             } catch (InterruptedException e) {

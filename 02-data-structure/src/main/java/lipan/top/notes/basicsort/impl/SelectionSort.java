@@ -1,4 +1,7 @@
-package lipan.top.notes.basicsort;
+package lipan.top.notes.basicsort.impl;
+
+import lipan.top.notes.basicsort.ISort;
+import lipan.top.notes.basicsort.SortTestHelper;
 
 /**
  * @author li.pan
