@@ -216,19 +216,52 @@ public class ThreadCooperate {
         System.out.println("3、通知消费者");
     }
 
+
+    /**
+     * 前面使用了if (baozidian==null) 来判断是否进入等待状态，是错误的。
+     * 是指并非由notify/unpack来唤醒的，由更底层的原因被唤醒。
+     * @throws InterruptedException
+     */
+    public void waitNotifyGoodTest() throws InterruptedException {
+        new Thread(() -> {
+            synchronized (this) {
+                //将while放入同步锁中判断
+                while (bzd == null) {
+                    System.out.println("1 进入等待，线程将会被挂起");
+                    try {
+                        this.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("线程被唤醒了");
+            }
+            System.out.println("3 买到包子，回家");
+        }).start();
+
+        Thread.sleep(2000L);
+        bzd = new Object();
+        synchronized (this) {
+            this.notify();
+        }
+        System.out.println("2 通知消费者，消费者线程被唤醒");
+    }
+
     public static void main(String[] args) throws Exception {
         // 对调用顺序有要求，也要开发自己注意锁的释放。这个被弃用的API,容易死锁,也容易导致永久挂起。
-//		 new ThreadCooperate().suspendResumeTest();
-//		 new ThreadCooperate().suspendResumeDeadLockTest();
+        new ThreadCooperate().suspendResumeTest();
+        new ThreadCooperate().suspendResumeDeadLockTest();
         new ThreadCooperate().suspendResumeDeadLockTest2();
 
         // wait/notify要求再同步关键字里面使用，免去了死锁的困扰，但是一定要先调用wait，再调用notify，否则永久等待了
-//         new ThreadCooperate().waitNotifyTest();
-//		 new ThreadCooperate().waitNotifyDeadLockTest();
+        new ThreadCooperate().waitNotifyTest();
+        new ThreadCooperate().waitNotifyDeadLockTest();
 //
 //        // park/unpark没有顺序要求，但是park并不会释放锁，所有再同步代码中使用要注意
 //        new ThreadCooperate().parkUnparkTest();
 //        new ThreadCooperate().parkUnparkDeadLockTest();
 
+        // 伪唤醒
+        new ThreadCooperate().waitNotifyGoodTest();
     }
 }
