@@ -10,7 +10,15 @@
         <option value="$PROJECT_DIR$/java-design-patterns/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/06-high-concurrency/pom.xml" />
+        <option value="$PROJECT_DIR$/06-lock-sync-aqs/pom.xml" />
+        <option value="$PROJECT_DIR$/00-jdk-source/jdk1.7/pom.xml" />
+        <option value="$PROJECT_DIR$/00-jdk-source/jdk1.8/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/00-jdk-source/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />

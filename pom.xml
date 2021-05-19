@@ -18,6 +18,7 @@
         <module>07-high-concurrency</module>
         <module>99-common-tools</module>
         <module>98-function-test</module>
+        <module>00-jdk-source</module>
     </modules>
 
     <properties>

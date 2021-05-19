@@ -25,8 +25,10 @@ public class Client {
         productB1.doSomething();
         productB1.doAnything();
 
-        Creator creator2 = new ConcreteCreator2();
 
+
+
+        Creator creator2 = new ConcreteCreator2();
         ProductA productA2 = creator2.createProductA();
         productA2.doSomething();
         productA2.doAnything();

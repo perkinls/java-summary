@@ -7,7 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/03-basic-concept/03-basic-concept.iml" filepath="$PROJECT_DIR$/03-basic-concept/03-basic-concept.iml" />
       <module fileurl="file://$PROJECT_DIR$/04-network-program/04-network-program.iml" filepath="$PROJECT_DIR$/04-network-program/04-network-program.iml" />
       <module fileurl="file://$PROJECT_DIR$/05-multi-thread/05-multi-thread.iml" filepath="$PROJECT_DIR$/05-multi-thread/05-multi-thread.iml" />
-      <module fileurl="file://$PROJECT_DIR$/06-lock-sync/06-lock-sync.iml" filepath="$PROJECT_DIR$/06-lock-sync/06-lock-sync.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06-lock-sync-aqs/06-lock-sync.iml" filepath="$PROJECT_DIR$/06-lock-sync-aqs/06-lock-sync.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06-lock-sync-aqs/06-lock-sync-aqs.iml" filepath="$PROJECT_DIR$/06-lock-sync-aqs/06-lock-sync-aqs.iml" />
       <module fileurl="file://$PROJECT_DIR$/07-high-concurrency/07-high-concurrency.iml" filepath="$PROJECT_DIR$/07-high-concurrency/07-high-concurrency.iml" />
       <module fileurl="file://$PROJECT_DIR$/98-function-test/98-function-test.iml" filepath="$PROJECT_DIR$/98-function-test/98-function-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/99-common-tools/99-common-tools.iml" filepath="$PROJECT_DIR$/99-common-tools/99-common-tools.iml" />

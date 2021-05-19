@@ -256,10 +256,10 @@ public class ThreadCooperate {
         // wait/notify要求再同步关键字里面使用，免去了死锁的困扰，但是一定要先调用wait，再调用notify，否则永久等待了
         new ThreadCooperate().waitNotifyTest();
         new ThreadCooperate().waitNotifyDeadLockTest();
-//
-//        // park/unpark没有顺序要求，但是park并不会释放锁，所有再同步代码中使用要注意
-//        new ThreadCooperate().parkUnparkTest();
-//        new ThreadCooperate().parkUnparkDeadLockTest();
+
+        // park/unpark没有顺序要求，但是park并不会释放锁，所有再同步代码中使用要注意
+        new ThreadCooperate().parkUnparkTest();
+        new ThreadCooperate().parkUnparkDeadLockTest();
 
         // 伪唤醒
         new ThreadCooperate().waitNotifyGoodTest();

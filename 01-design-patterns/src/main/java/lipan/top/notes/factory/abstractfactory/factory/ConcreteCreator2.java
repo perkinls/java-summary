@@ -1,9 +1,9 @@
 package lipan.top.notes.factory.abstractfactory.factory;
 
-import lipan.top.notes.factory.abstractfactory.product.ConcreteProductA1;
-import lipan.top.notes.factory.abstractfactory.product.ProductB;
-import lipan.top.notes.factory.abstractfactory.product.ConcreteProductB1;
+import lipan.top.notes.factory.abstractfactory.product.ConcreteProductA2;
+import lipan.top.notes.factory.abstractfactory.product.ConcreteProductB2;
 import lipan.top.notes.factory.abstractfactory.product.ProductA;
+import lipan.top.notes.factory.abstractfactory.product.ProductB;
 
 /**
  * @author li.pan
@@ -15,11 +15,11 @@ public class ConcreteCreator2 implements Creator {
 
     @Override
     public ProductA createProductA() {
-        return new ConcreteProductA1();
+        return new ConcreteProductA2();
     }
 
     @Override
     public ProductB createProductB() {
-        return new ConcreteProductB1();
+        return new ConcreteProductB2();
     }
 }

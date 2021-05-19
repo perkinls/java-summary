@@ -2,7 +2,7 @@ package lipan.top.notes.datastructure;
 
 import lipan.top.notes.datastructure.array.UdfArrayV1;
 import lipan.top.notes.datastructure.array.UdfArrayV2;
-import lipan.top.notes.datastructure.stack.ArrayStack;
+import lipan.top.notes.datastructure.stack.ArrayStackImpl;
 import org.junit.Test;
 
 /**
@@ -94,7 +94,7 @@ public class DataStructureTest {
      */
     @Test
     public void arrayStackTest() {
-        ArrayStack<Integer> stack = new ArrayStack<>();
+        ArrayStackImpl<Integer> stack = new ArrayStackImpl<>();
 
         for(int i = 0 ; i < 5 ; i ++){
             stack.push(i);

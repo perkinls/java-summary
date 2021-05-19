@@ -95,7 +95,7 @@ public class UdfArrayV2<E> {
             // 调用动态数组，扩容到之前容量的二倍
             resize(2 * data.length);
 
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Add failed. array is full");
         }
 
@@ -176,7 +176,7 @@ public class UdfArrayV2<E> {
      */
     public int find(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i].equals(e)) {
+            if (data[i].equals(e)) { // == 引用比较,equals值比较
                 return i;
             }
         }
@@ -197,9 +197,12 @@ public class UdfArrayV2<E> {
         for (int i = index + 1 ; i < size ; i++)
             data [ i - 1] = data[i];
         size --;
-        // data[size] = null;    // loitering objects
+        // data[size] = null;    // loitering objects  加速垃圾回收
 
-        // 这里等于1/4的才进行缩容，但是还要注意长度除于2不能等于0
+        /**
+         * 这里等于1/4的才进行缩容，但是还要注意长度除于2不能等于0
+         * --->>>主要是为了解决时间复杂度震荡的情况
+         */
         if (size == data.length / 4 && data.length / 2 != 0)
             resize(data.length / 2);
 
@@ -240,7 +243,7 @@ public class UdfArrayV2<E> {
 
 
     /**
-     * 动态扩展数组
+     * 数据内部逻辑动态扩展数组
      *
      * @param newCapacity
      */

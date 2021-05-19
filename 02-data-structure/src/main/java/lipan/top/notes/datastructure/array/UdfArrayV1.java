@@ -3,7 +3,7 @@ package lipan.top.notes.datastructure.array;
 /**
  * @author li.pan
  * @version 1.0.0
- * @Description 自定义数组Int类型
+ * @Description 基于Java中数组进行二次封装
  * @createTime 2020年12月08日 22:59:00
  */
 public class UdfArrayV1 {
@@ -77,10 +77,11 @@ public class UdfArrayV1 {
         if (size == data.length)
             throw new IllegalArgumentException("Add failed. array is full");
 
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Add failed. array is full");
         }
 
+        // 对于index后面的元素都向后挪动一个位置
         for (int i = size - 1; i >= index; i--) {
             data[i + 1] = data[i];
         }
@@ -195,7 +196,7 @@ public class UdfArrayV1 {
 
 
     /**
-     * 从数组中删除元素e
+     * 从数组中删除元素e（只会删除一个）
      *
      * @param e
      */
