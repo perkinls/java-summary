@@ -65,12 +65,7 @@ public class UdfArrayV2<E> {
      */
     public void addLast(E e) {
 
-        // 如果元素的个数等于数组的容量，那么抛出异常
-        if (size == data.length)
-            throw new IllegalArgumentException("AddLast failed. array is full");
-        data[size] = e;
-        size++;
-
+        add(size, e);
     }
 
 
@@ -90,14 +85,15 @@ public class UdfArrayV2<E> {
      */
     public void add(int index, E e) {
 
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed. array is full");
+        }
+
         // 如果数组已经满了
         if (size == data.length)
             // 调用动态数组，扩容到之前容量的二倍
             resize(2 * data.length);
 
-        if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Add failed. array is full");
-        }
 
         for (int i = size - 1; i >= index; i--) {
             data[i + 1] = data[i];

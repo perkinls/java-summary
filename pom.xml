@@ -19,6 +19,7 @@
         <module>99-common-tools</module>
         <module>98-function-test</module>
         <module>00-jdk-source</module>
+        <module>100-leeetcode</module>
     </modules>
 
     <properties>

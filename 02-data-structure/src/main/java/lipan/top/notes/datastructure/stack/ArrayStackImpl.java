@@ -85,17 +85,4 @@ public class ArrayStackImpl<E> implements IStack<E> {
         return res.toString();
     }
 
-
-    public static void main(String[] args) {
-
-        ArrayStackImpl<Integer> stack = new ArrayStackImpl<>();
-
-        for (int i = 0; i < 5; i++) {
-            stack.push(i);
-            System.out.println(stack);
-        }
-
-        stack.pop();
-        System.out.println(stack);
-    }
 }

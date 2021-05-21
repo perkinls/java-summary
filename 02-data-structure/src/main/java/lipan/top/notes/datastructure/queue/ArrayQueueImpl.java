@@ -63,17 +63,5 @@ public class ArrayQueueImpl<E> implements IQueue<E> {
         return res.toString();
     }
 
-    public static void main(String[] args) {
-
-        ArrayQueueImpl<Integer> queue = new ArrayQueueImpl<>();
-        for (int i = 0; i < 10; i++) {
-            queue.enqueue(i);
-            System.out.println(queue);
-            if (i % 3 == 2) {
-                queue.dequeue();
-                System.out.println("移除后" + queue);
-            }
-        }
-    }
 
 }
