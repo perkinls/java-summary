@@ -7,6 +7,7 @@ target/
 *.zip
 *.tar
 *.tar.gz
+*.idea
  
 # eclipse ignore
 .settings/
