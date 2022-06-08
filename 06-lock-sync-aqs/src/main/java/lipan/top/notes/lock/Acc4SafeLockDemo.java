@@ -1,6 +1,6 @@
 package lipan.top.notes.lock;
 
-import lipan.top.notes.aqs.udfimpl.UdfLockSafeImpl;
+import lipan.top.notes.lock.udf.UdfLockSafeImpl;
 
 import java.io.IOException;
 

@@ -24,7 +24,7 @@ public class NIOServer {
             /**
              * 获取新tcp连接通道
              *
-             * serverSocketChannel.accept() 如果该通道属于非阻塞模式，那么如果没有挂起的连接，该方法将立即返回null.
+             * serverSocketChannel.accept() 如果该通道属于非阻塞模式，那么没有挂起的连接，该方法将立即返回null.
              * 在使用过程中必须检查返回的SocketChannel是否为null.
              */
             SocketChannel socketChannel = serverSocketChannel.accept();

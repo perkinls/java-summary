@@ -12,10 +12,14 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * NIO selector 多路复用reactor线程模型
+ * (NIO+多线程)NIO selector 多路复用reactor线程模型
  * @author lipan
  */
 public class NIOServerV3 {
+
+    /**
+     * 封装了selector.select()等事件轮询的代码
+     */
     abstract class EventLoop extends Thread {
 
         Selector selector;
@@ -42,6 +46,7 @@ public class NIOServerV3 {
                     while ((task = taskQueue.poll()) != null) {
                         task.run();
                     }
+                    // 轮询事件
                     selector.select(1000);
 
                     // 获取查询结果
@@ -52,7 +57,7 @@ public class NIOServerV3 {
                         // 被封装的查询结果
                         SelectionKey key = iter.next();
                         iter.remove();
-                        int readyOps = key.readyOps();
+                        int readyOps = key.readyOps(); // 已经准备就绪的事件
                         // 关注 Read 和 Accept两个事件
                         if ((readyOps & (SelectionKey.OP_READ | SelectionKey.OP_ACCEPT)) != 0 || readyOps == 0) {
                             try {
@@ -76,11 +81,15 @@ public class NIOServerV3 {
 
 
         private SelectionKey register(SelectableChannel channel) throws Exception {
+            // 为什么register要以任务提交的形式，让reactor线程去处理？
+            // 因为线程在执行channel注册到selector的过程中，会和调用selector.select()方法的线程争用同一把锁
+            // 而select()方法实在eventLoop中通过while循环调用的，争抢的可能性很高，为了让register能更快的执行，就放到同一个线程来处理
             FutureTask<SelectionKey> futureTask = new FutureTask<>(() -> channel.register(selector, 0, channel));
             taskQueue.add(futureTask);
             return futureTask.get();
         }
 
+        // acceptor 线程调用
         private void doStart() {
             if (!running) {
                 running = true;
@@ -90,9 +99,9 @@ public class NIOServerV3 {
     }
 
     private ServerSocketChannel serverSocketChannel;
-    // 1、创建多个线程 - acceptor
+    // 1、创建多个线程 - acceptor 接受线程
     private EventLoop[] bossThreads = new EventLoop[1];
-    // 2、创建多个线程 - io
+    // 2、创建多个线程 - io 处理线程
     private EventLoop[] workThreads = new EventLoop[1];
 
     /**
@@ -102,18 +111,23 @@ public class NIOServerV3 {
         // 创建Boss线程, 只负责处理serverSocketChannel
         for (int i = 0; i < bossThreads.length; i++) {
             bossThreads[i] = new EventLoop() {
+                // 自增原子变量
                 AtomicInteger incr = new AtomicInteger(0);
 
                 @Override
                 public void handler(SelectableChannel channel) throws Exception {
                     // 只做请求分发，不做具体的数据读取
                     ServerSocketChannel ch = (ServerSocketChannel) channel;
+
+                    // SocketChannel 用于建立TCP网络连接读写数据
                     SocketChannel socketChannel = ch.accept();
                     socketChannel.configureBlocking(false);
                     // 收到连接建立的通知之后，分发给work线程继续去读取数据
+                    // 0 % 1 = 0
                     int index = incr.getAndIncrement() % workThreads.length;
                     EventLoop workEventLoop = workThreads[index];
                     workEventLoop.doStart();
+                    // 在boss线程中注册io线程感兴趣的事情为read
                     SelectionKey selectionKey = workEventLoop.register(socketChannel);
                     selectionKey.interestOps(SelectionKey.OP_READ);
                     System.out.println("收到新连接 : " + socketChannel.getRemoteAddress());
@@ -182,6 +196,7 @@ public class NIOServerV3 {
 
     public static void main(String[] args) throws Exception {
         NIOServerV3 nioServerV3 = new NIOServerV3();
+        // 创建 接收和处理io线程
         nioServerV3.newGroup();
         nioServerV3.initAndRegister();
         nioServerV3.bind();
@@ -189,4 +204,6 @@ public class NIOServerV3 {
         System.out.println(read);
     }
     // 重要资料: https://www.cnblogs.com/pingh/p/3224990.html
+
+
 }

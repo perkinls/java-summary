@@ -1,4 +1,4 @@
-package lipan.top.notes.aqs.udfimpl;
+package lipan.top.notes.semaphore.impl;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;

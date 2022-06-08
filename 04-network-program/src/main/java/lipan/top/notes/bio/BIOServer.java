@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * 每建议一个连接需要一个线程来处理
+ * 每次建立一个连接需要一个线程来处理
  * @author lipan
  */
 public class BIOServer {

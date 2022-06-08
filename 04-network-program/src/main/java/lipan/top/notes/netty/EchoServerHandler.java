@@ -20,7 +20,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
- * 可在里面实现集体的业务逻辑代码
+ * 可在里面实现具体的业务逻辑代码
  */
 @Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {

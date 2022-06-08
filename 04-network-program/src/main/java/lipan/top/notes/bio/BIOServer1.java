@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 
 /**
  * BIO编程升级版本，加入多线程支持
+ * 如果线程池中有空闲的线程，将创建一个新的线程来建立连接
  * @author lipan
  */
 public class BIOServer1 {

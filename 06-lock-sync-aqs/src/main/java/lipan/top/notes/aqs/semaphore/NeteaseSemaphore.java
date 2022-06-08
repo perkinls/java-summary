@@ -1,17 +1,19 @@
 package lipan.top.notes.aqs.semaphore;
 
-// 自定义的信号量实现
+/**
+ * 基于AQS模版类，自定义的信号量实现
+ */
 public class NeteaseSemaphore {
     AQSdemo aqs = new AQSdemo() {
         @Override
         public int tryAcquireShared() { // 信号量获取， 数量 - 1
-            for(;;) {
-                int count =  getState().get();
+            for (; ; ) {
+                int count = getState().get();
                 int n = count - 1;
-                if(count <= 0 || n < 0) {
+                if (count <= 0 || n < 0) {
                     return -1;
                 }
-                if(getState().compareAndSet(count, n)) {
+                if (getState().compareAndSet(count, n)) {
                     return 1;
                 }
             }
@@ -23,7 +25,9 @@ public class NeteaseSemaphore {
         }
     };
 
-    /** 许可数量 */
+    /**
+     * 许可数量
+     */
     public NeteaseSemaphore(int count) {
         aqs.getState().set(count); // 设置资源的状态
     }

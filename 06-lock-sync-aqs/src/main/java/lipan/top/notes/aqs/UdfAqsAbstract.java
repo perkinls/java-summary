@@ -48,14 +48,15 @@ public abstract class UdfAqsAbstract {
     }
 
     /**
+     * 这个方法的实现,应该交给具体的使用者
+     */
+    public abstract boolean tryAcquire();
+
+    /**
      * 释放资源
      */
     protected abstract boolean tryRelease();
 
-    /**
-     * 这个方法的实现,应该交给具体的使用者
-     */
-    public abstract boolean tryAcquire();
 
     public void acquireShare() { // 获取共享资源
         // 进入等待列表

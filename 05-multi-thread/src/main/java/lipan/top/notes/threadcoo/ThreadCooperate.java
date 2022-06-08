@@ -15,6 +15,25 @@ import java.util.concurrent.locks.LockSupport;
  * </li>
  */
 public class ThreadCooperate {
+
+    public static void main(String[] args) throws Exception {
+        // 对调用顺序有要求，也要开发自己注意锁的释放。这个被弃用的API,容易死锁,也容易导致永久挂起。
+        new ThreadCooperate().suspendResumeTest();
+        new ThreadCooperate().suspendResumeDeadLockTest();
+        new ThreadCooperate().suspendResumeDeadLockTest2();
+
+        // wait/notify要求再同步关键字里面使用，免去了死锁的困扰，但是一定要先调用wait，再调用notify，否则永久等待了
+        new ThreadCooperate().waitNotifyTest();
+        new ThreadCooperate().waitNotifyDeadLockTest();
+
+        // park/unpark没有顺序要求，但是park并不会释放锁，所有再同步代码中使用要注意
+        new ThreadCooperate().parkUnparkTest();
+        new ThreadCooperate().parkUnparkDeadLockTest();
+
+        // 伪唤醒
+        new ThreadCooperate().waitNotifyGoodTest();
+    }
+
     /**
      * 包子店
      */
@@ -245,23 +264,5 @@ public class ThreadCooperate {
             this.notify();
         }
         System.out.println("2 通知消费者，消费者线程被唤醒");
-    }
-
-    public static void main(String[] args) throws Exception {
-        // 对调用顺序有要求，也要开发自己注意锁的释放。这个被弃用的API,容易死锁,也容易导致永久挂起。
-        new ThreadCooperate().suspendResumeTest();
-        new ThreadCooperate().suspendResumeDeadLockTest();
-        new ThreadCooperate().suspendResumeDeadLockTest2();
-
-        // wait/notify要求再同步关键字里面使用，免去了死锁的困扰，但是一定要先调用wait，再调用notify，否则永久等待了
-        new ThreadCooperate().waitNotifyTest();
-        new ThreadCooperate().waitNotifyDeadLockTest();
-
-        // park/unpark没有顺序要求，但是park并不会释放锁，所有再同步代码中使用要注意
-        new ThreadCooperate().parkUnparkTest();
-        new ThreadCooperate().parkUnparkDeadLockTest();
-
-        // 伪唤醒
-        new ThreadCooperate().waitNotifyGoodTest();
     }
 }

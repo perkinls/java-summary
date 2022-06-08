@@ -1,4 +1,4 @@
-package lipan.top.notes.aqs.udfimpl;
+package lipan.top.notes.lock.udf;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicReference;

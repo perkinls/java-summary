@@ -19,7 +19,6 @@ public class CompletableFutureDemoV2 {
                 e.printStackTrace();
             }
         });
-        future.get();
         System.out.println(Thread.currentThread().getName()+" 结束。");
     }
 

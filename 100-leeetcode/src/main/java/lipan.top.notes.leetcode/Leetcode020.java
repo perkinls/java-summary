@@ -14,7 +14,7 @@ import java.util.Stack;
  * 2. 左括号必须以正确的顺序闭合。
  * </p>
  */
-public class Leetcode20 {
+public class Leetcode020 {
 
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();

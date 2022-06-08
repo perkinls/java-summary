@@ -67,6 +67,7 @@ public class CompletableFutureDemoV4 {
      * @throws InterruptedException
      */
     public static void asyncThenRun() throws ExecutionException, InterruptedException {
+        System.out.println(Thread.currentThread().getName() + "thenRun: 开始");
         CompletableFuture.supplyAsync(() -> {
             System.out.println(Thread.currentThread().getName() + "supplyAsync: 一阶段任务");
             return null;
@@ -115,7 +116,7 @@ public class CompletableFutureDemoV4 {
         });
         CompletableFuture<String> f3 = CompletableFuture.supplyAsync(() -> {
             try {
-                TimeUnit.SECONDS.sleep(4);
+                TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -133,17 +134,14 @@ public class CompletableFutureDemoV4 {
      */
     public static void exceptionProcessV1() throws ExecutionException, InterruptedException {
         int age = -1;
-        CompletableFuture<String> task = CompletableFuture.supplyAsync(new Supplier<String>() {
-            @Override
-            public String get() {
-                if (age < 0) {
-                    throw new IllegalArgumentException("性别必须大于0");
-                }
-                if (age < 18) {
-                    return "未成年人";
-                }
-                return "成年人";
+        CompletableFuture<String> task = CompletableFuture.supplyAsync(() -> {
+            if (age < 0) {
+                throw new IllegalArgumentException("性别必须大于0");
             }
+            if (age < 18) {
+                return "未成年人";
+            }
+            return "成年人";
         }).exceptionally(ex -> {
             System.out.println(ex.getMessage());
             return "发生 异常" + ex.getMessage();
@@ -182,11 +180,11 @@ public class CompletableFutureDemoV4 {
     }
 
     public static void main(String[] args) throws Exception {
-        asyncThenApply();
-        asyncThenAccept();
-        asyncThenRun();
-        asyncThenCompose();
-        multiTaskCompose();
+//        asyncThenApply();
+//        asyncThenAccept();
+//        asyncThenRun();
+//        asyncThenCompose();
+//        multiTaskCompose();
         exceptionProcessV1();
         exceptionProcessV2();
     }

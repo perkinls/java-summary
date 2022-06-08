@@ -34,7 +34,7 @@ public final class EchoServer {
 
         // 主线程组, 用于接受客户端的连接，但是不做任何处理，跟老板一样，不做事
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        // 从线程组, 老板线程组会把任务丢给他，让手下线程组去做任务
+        // 从线程组, 老板线程组会把任务丢给他，让手下线程组去做任务 默认cpu * 2
         EventLoopGroup workerGroup2 = new NioEventLoopGroup();
 
         final EchoServerHandler serverHandler = new EchoServerHandler();
@@ -45,7 +45,8 @@ public final class EchoServer {
              * 1. bind 绑定线程组
              * 2. channel 设定通讯模式为NIO， 同步非阻塞
              * 3. option 设定缓冲区大小， 缓存区的单位是字节
-             * 4. childHandler 设置过滤器(childHandler是服务的Bootstrap独有的方法。是用于提供处理对象的。
+             * 4. handler 用来处理服务端通道的请求(该handler对应bossGroup , childHandler对应workerGroup)
+             * 5. childHandler 设置过滤器(childHandler是服务的Bootstrap独有的方法。是用于提供处理对象的。
              *              可以一次性增加若干个处理逻辑。是类似责任链模式的处理方式。
              *              增加A，B两个处理逻辑，在处理客户端请求数据的时候，根据A-》B顺序依次处理)
              * 5. bind 绑定端口(ServerBootstrap可以绑定多个监听端口,多次调用bind方法即可)
@@ -53,12 +54,14 @@ public final class EchoServer {
              *                  可以使用ChannelFuture实现后续的服务器和客户端的交互。)
              */
             ChannelFuture f = b.group(bossGroup, workerGroup2)
-                    .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG, 100)
+                    .channel(NioServerSocketChannel.class) // 底层是通过NioServerSocketChannel类反射获取channel
+                    .option(ChannelOption.SO_BACKLOG, 100) // 设置线程队列等待连接个数
                     .handler(new LoggingHandler(LogLevel.DEBUG))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
+                            //可以使用一个集合管理 SocketChannel， 再推送消息时，
+                            // 可以将业务加入到各个channel对应的NIOEventLoop 的 taskQueue 或者 scheduleTaskQueue
                             ChannelPipeline p = ch.pipeline();
                             //p.addLast(new LoggingHandler(LogLevel.INFO));
                             p.addLast(serverHandler);
@@ -66,8 +69,10 @@ public final class EchoServer {
                     })
                     .bind(PORT)
                     .sync();
+
             System.out.println(Thread.currentThread().getName() + ">>>>>>>>>>>>>>>>>>");
-            // Wait until the server socket is closed.
+
+            //对关闭通道事件  进行监听
             f.channel().closeFuture().sync();
         } finally {
             // Shut down all event loops to terminate all threads.

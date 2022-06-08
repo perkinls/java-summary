@@ -12,7 +12,7 @@ import java.util.Iterator;
  * 直接基于非阻塞的写法,一个线程处理轮询所有请求
  * @author lipan
  */
-public class NIOServer1 {
+public class NIOServerV1 {
     /**
      * 已经建立连接的集合
      */

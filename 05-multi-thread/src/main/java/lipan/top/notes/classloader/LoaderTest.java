@@ -4,7 +4,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 /**
- * 指定class 进行加载e
+ * 指定class 进行加载
  */
 public class LoaderTest {
     public static void main(String[] args) throws Exception {

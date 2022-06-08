@@ -40,26 +40,6 @@ public class UdfAQSImpl {
     }
 
     /**
-     * 释放锁
-     */
-    public void release() {
-        // cas 修改 owner 拥有者
-        if (tryRelease()) {
-            Thread waiter = waiters.peek();
-            LockSupport.unpark(waiter); // 唤醒线程继续 抢锁
-        }
-    }
-
-    public boolean tryAcquire() {
-        throw new UnsupportedOperationException();
-    }
-
-    public boolean tryRelease() {
-        throw new UnsupportedOperationException();
-    }
-
-
-    /**
      * 共享资源获取
      */
     public void acquireShared() {
@@ -72,6 +52,27 @@ public class UdfAQSImpl {
         // 后续，等待其他线程释放锁，收到通知之后继续循环
         waiters.remove(Thread.currentThread());
     }
+
+
+    public boolean tryAcquire() {
+        throw new UnsupportedOperationException();
+    }
+
+    public boolean tryRelease() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * 释放锁
+     */
+    public void release() {
+        // cas 修改 owner 拥有者
+        if (tryRelease()) {
+            Thread waiter = waiters.peek();
+            LockSupport.unpark(waiter); // 唤醒线程继续 抢锁
+        }
+    }
+
     /**
      * 共享资源的释放
      */
