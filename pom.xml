@@ -14,11 +14,10 @@
         <module>03-basic-concept</module>
         <module>04-network-program</module>
         <module>05-multi-thread</module>
-        <module>06-lock-sync</module>
+        <module>06-lock-sync-aqs</module>
         <module>07-high-concurrency</module>
         <module>99-common-tools</module>
         <module>98-function-test</module>
-        <module>00-jdk-source</module>
         <module>100-leeetcode</module>
     </modules>
 
@@ -60,6 +59,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.41</version>
         </dependency>
     </dependencies>
 

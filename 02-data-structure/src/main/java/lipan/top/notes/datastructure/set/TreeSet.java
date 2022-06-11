@@ -1,7 +1,7 @@
 package lipan.top.notes.datastructure.set;
 
 
-import lipan.top.notes.datastructure.tree.BinarySTree;
+import lipan.top.notes.datastructure.tree.BinarySearchTree;
 
 /**
  * @author li.pan
@@ -9,10 +9,10 @@ import lipan.top.notes.datastructure.tree.BinarySTree;
  */
 public class TreeSet<E extends Comparable<E>> implements ISet<E> {
 
-    private final BinarySTree<E> bst;
+    private final BinarySearchTree<E> bst;
 
     public TreeSet() {
-        this.bst = new BinarySTree<E>();
+        this.bst = new BinarySearchTree<E>();
     }
 
     @Override

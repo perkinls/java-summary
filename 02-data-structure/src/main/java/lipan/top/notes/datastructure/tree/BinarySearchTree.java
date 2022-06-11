@@ -8,7 +8,7 @@ import java.util.Stack;
  * @author li.pan
  * @title 二叉搜索树
  */
-public class BinarySTree<E extends Comparable<E>> {
+public class BinarySearchTree<E extends Comparable<E>> {
     class Node {
         public E e;
         public Node left, right;
@@ -23,7 +23,7 @@ public class BinarySTree<E extends Comparable<E>> {
     private Node root;
     private int size;
 
-    public BinarySTree() {
+    public BinarySearchTree() {
         root = null;
         size = 0;
     }
